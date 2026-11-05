@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lời mời 19/11 💗</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:16px;font-family:'Quicksand',sans-serif;color:#b0306a;background:linear-gradient(135deg,#ffe3ef,#ffc2da 50%,#ffd9ec);overflow-x:hidden}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.p{position:absolute;top:-40px;animation:fall linear forwards;user-select:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.card{position:relative;z-index:1;width:100%;max-width:480px;background:rgba(255,255,255,.88);border:3px solid #ff8fb8;border-radius:28px;padding:36px 24px 28px;text-align:center;box-shadow:0 12px 40px rgba(255,105,160,.35)}
+.card::before{content:"🎀";position:absolute;top:-26px;left:50%;transform:translateX(-50%);font-size:46px;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateX(-50%) translateY(-6px) rotate(6deg)}}
+.corner{position:absolute;font-size:26px}.c1{left:12px;top:10px}.c2{right:12px;top:10px}.c3{left:12px;bottom:8px}.c4{right:12px;bottom:8px}
+h1{font-family:'Pacifico',cursive;font-weight:400;font-size:26px;line-height:1.5;margin-bottom:18px}
+.step{display:none;animation:pop .5s}.step.on{display:block}
+@keyframes pop{from{opacity:0;transform:scale(.85)}}
+.opts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0}
+.chip,.btn{font:700 16px 'Quicksand',sans-serif;border:2px solid #ff8fb8;background:#fff;color:#b0306a;border-radius:999px;padding:10px 18px;cursor:pointer;transition:.2s}
+.chip:hover{transform:scale(1.07)}
+.chip.sel{background:#ff5c9e;color:#fff;border-color:#ff5c9e}
+.btn{background:#ff5c9e;color:#fff;border-color:#ff5c9e;box-shadow:0 6px 16px rgba(255,92,158,.4)}
+.btn:hover{transform:scale(1.08)}
+.btn.no{background:#fff;color:#b0306a;box-shadow:none}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+#msg{min-height:24px;margin-top:12px;font-weight:700}
+input[type=time],textarea{width:100%;font:500 16px 'Quicksand',sans-serif;border:2px solid #ff8fb8;border-radius:16px;padding:12px;color:#b0306a;outline:none;background:#fff}
+textarea{min-height:90px;resize:vertical}
+.bar{height:8px;background:#ffd3e4;border-radius:9px;margin-bottom:20px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff8fb8,#ff3d87);transition:width .4s}
+.big{font-size:60px;animation:bob 1.5s infinite}
+</style>
+</head>
+<body>
+<div id="fx"></div>
+<div class="card">
+  <span class="corner c1">🌸</span><span class="corner c2">🌷</span><span class="corner c3">🌺</span><span class="corner c4">💗</span>
+  <div class="bar"><i id="bar"></i></div>
+
+  <div class="step on" data-s="0">
+    <h1>Nhân ngày 19/11 bé muốn mời anh đi chơi ạaaa 💕</h1>
+    <div class="opts" id="yn" style="min-height:60px;align-items:center">
+      <button class="btn" id="yes">Anh đồng ý ạ 💖</button>
+      <button class="btn no" id="no">Anh từ chối</button>
+    </div>
+    <div id="msg"></div>
+  </div>
+
+  <div class="step" data-s="1">
+    <h1>Anh rảnh những buổi nào ạ? 🌸</h1>
+    <p>(chọn được nhiều ngày nhaa)</p>
+    <div class="opts" id="dates"></div>
+    <button class="btn next">Tiếp nè 💗</button>
+  </div>
+
+  <div class="step" data-s="2">
+    <h1>Anh sang đón bé lúc mấy giờ ạ? ⏰</h1>
+    <div class="opts" id="hours"></div>
+    <input type="time" id="hour" value="18:00">
+    <br><br><button class="btn next">Tiếp nè 💗</button>
+  </div>
+
+  <div class="step" data-s="3">
+    <h1>Mình ăn gì nè? 🍽️</h1>
+    <div class="opts" id="foods"></div>
+    <button class="btn next">Tiếp nè 💗</button>
+  </div>
+
+  <div class="step" data-s="4">
+    <h1>Anh có đang thích gì hong, bé mua tặng anh nhó 🎁</h1>
+    <textarea id="gift" placeholder="Anh thích..."></textarea>
+    <div class="opts"><button class="chip" id="pick">Bé chọn giúp anh nhéee 🥰</button></div>
+    <button class="btn next">Tiếp nè 💗</button>
+  </div>
+
+  <div class="step" data-s="5">
+    <h1>Anh có gì muốn góp ý, đề xuất cho bé hongg? 💌</h1>
+    <textarea id="fb" placeholder="Anh muốn nói với bé..."></textarea>
+    <br><br><button class="btn" id="send">Gửi cho bé 💖</button>
+    <div id="err" style="color:#d6336c;font-weight:700;margin-top:12px"></div>
+  </div>
+
+  <div class="step" data-s="6">
+    <div class="big">💝</div>
+    <h1>Cảm ơn anh đã đồng ý!<br>Mong mình sẽ có buổi đi chơi siêu vuii 🎀</h1>
+  </div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const data={dates:[],hour:'',food:'',gift:'',feedback:''};
+let cur=0;
+
+// ---------- hiệu ứng rơi: tim, nơ, hoa ----------
+const emo=['💗','💖','💕','🎀','🌸','🌷','🌺','🌼','💝'];
+function drop(){
+  const e=document.createElement('span');e.className='p';
+  e.textContent=emo[Math.random()*emo.length|0];
+  e.style.left=Math.random()*100+'vw';
+  e.style.fontSize=(14+Math.random()*26)+'px';
+  e.style.opacity=.5+Math.random()*.5;
+  const d=5+Math.random()*6;e.style.animationDuration=d+'s';
+  $('#fx').appendChild(e);setTimeout(()=>e.remove(),d*1000);
+}
+setInterval(drop,350);
+function burst(x,y){
+  for(let i=0;i<18;i++){
+    const e=document.createElement('span');
+    e.textContent=emo[Math.random()*emo.length|0];
+    Object.assign(e.style,{position:'fixed',left:x+'px',top:y+'px',fontSize:'24px',pointerEvents:'none',zIndex:9,transition:'1.2s ease-out'});
+    document.body.appendChild(e);
+    const a=Math.random()*6.28,r=80+Math.random()*140;
+    requestAnimationFrame(()=>{e.style.transform=`translate(${Math.cos(a)*r}px,${Math.sin(a)*r}px) rotate(${Math.random()*360}deg)`;e.style.opacity=0});
+    setTimeout(()=>e.remove(),1300);
+  }
+}
+document.addEventListener('click',e=>burst(e.clientX,e.clientY));
+
+// ---------- chuyển bước ----------
+function go(n){
+  document.querySelectorAll('.step').forEach(s=>s.classList.toggle('on',+s.dataset.s===n));
+  cur=n;$('#bar').style.width=(n/6*100)+'%';
+}
+
+// ---------- nút từ chối chạy trốn ----------
+const lines=['Đồng ý đi mà 🥺','Năn nỉ óoo 🥹','Anh đừng từ chối bé mà 😭','Bé buồn lắm đó nha 💔','Chọn nút bên kia đi ạ 👉','Hong cho từ chối đâu 😤','Bé xin anh đó mà 🙏'];
+let li=0,placed=false;
+function flee(e){
+  e.preventDefault();e.stopPropagation();
+  const b=$('#no');
+  if(!placed){b.style.position='fixed';placed=true}
+  const w=b.offsetWidth,h=b.offsetHeight;
+  b.style.left=Math.random()*(innerWidth-w-20)+10+'px';
+  b.style.top=Math.random()*(innerHeight-h-20)+10+'px';
+  $('#msg').textContent=lines[li++%lines.length];
+}
+['mouseenter','touchstart','click'].forEach(ev=>$('#no').addEventListener(ev,flee,{passive:false}));
+$('#yes').onclick=()=>{$('#no').style.display='none';go(1)};
+
+// ---------- chọn ngày (nhiều) ----------
+const days=[14,15,16,17,18,19];
+days.forEach(d=>{
+  addChip('#dates',`Tối ${d}/11`,'multi');
+  if(d===19)addChip('#dates','Trưa 19/11','multi');
+});
+function addChip(box,text,mode){
+  const c=document.createElement('button');c.className='chip';c.textContent=text;
+  c.onclick=()=>{
+    if(mode==='multi')c.classList.toggle('sel');
+    else{document.querySelectorAll(box+' .chip').forEach(x=>x.classList.remove('sel'));c.classList.add('sel')}
+  };
+  $(box).appendChild(c);
+}
+// giờ
+['11:00','17:00','18:00','19:00','20:00'].forEach(h=>{
+  const c=document.createElement('button');c.className='chip';c.textContent=h;
+  c.onclick=()=>{$('#hour').value=h;document.querySelectorAll('#hours .chip').forEach(x=>x.classList.remove('sel'));c.classList.add('sel')};
+  $('#hours').appendChild(c);
+});
+// món ăn (1 đáp án)
+['🔥 Đồ nướng','🍲 Lẩu','🇰🇷 Đồ Hàn','🍣 Đồ Nhật','🥰 Bé yêu chọn giúp anh nhaa'].forEach(f=>addChip('#foods',f,'single'));
+// quà
+$('#pick').onclick=()=>{$('#gift').value='Bé chọn giúp anh nhéee 🥰'};
+
+// ---------- nút Tiếp ----------
+document.querySelectorAll('.next').forEach(b=>b.onclick=()=>{
+  if(cur===1){
+    data.dates=[...document.querySelectorAll('#dates .chip.sel')].map(x=>x.textContent);
+    if(!data.dates.length)return alert('Anh chọn ít nhất 1 buổi nha 🥺');
+  }
+  if(cur===2){
+    data.hour=$('#hour').value;
+    if(!data.hour)return alert('Anh chọn giờ nha ⏰');
+  }
+  if(cur===3){
+    const f=document.querySelector('#foods .chip.sel');
+    if(!f)return alert('Anh chọn 1 món nha 🍽️');
+    data.food=f.textContent;
+  }
+  if(cur===4){
+    data.gift=$('#gift').value.trim();
+    if(!data.gift)return alert('Anh viết gì đó hoặc bấm "Bé chọn giúp" nha 🎁');
+  }
+  go(cur+1);
+});
+
+// ---------- gửi ----------
+$('#send').onclick=async()=>{
+  data.feedback=$('#fb').value.trim();
+  $('#send').disabled=true;
+  try{
+    const r=await fetch('/api/answers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    if(!r.ok)throw 0;
+    go(6);
+    for(let i=0;i<8;i++)setTimeout(()=>burst(Math.random()*innerWidth,Math.random()*innerHeight*.7),i*250);
+  }catch(e){
+    console.error('Gửi thất bại - kiểm tra server đã chạy (npm start) và mở bằng http://localhost:3000 chưa:',e);
+    $('#err').textContent='Chưa gửi được rồi, anh bấm thử lại giúp bé nha 🥺';$('#send').disabled=false;
+  }
+};
+</script>
+</body>
+</html>

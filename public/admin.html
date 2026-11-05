@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xem câu trả lời 💌</title>
+<style>
+body{font-family:sans-serif;background:#ffe3ef;color:#8a1f55;padding:20px;max-width:640px;margin:auto}
+.a{background:#fff;border:2px solid #ff8fb8;border-radius:16px;padding:14px 18px;margin:14px 0;line-height:1.7}
+small{color:#c0689a}
+</style>
+</head>
+<body>
+<h2>💌 Câu trả lời của anh</h2>
+<div id="list">Đang tải...</div>
+<script>
+(async()=>{
+  const key=prompt('Nhập mật khẩu admin:');
+  const box=document.getElementById('list');
+  const r=await fetch('/api/answers',{headers:{'x-key':key||''}});
+  if(!r.ok){box.textContent='Sai mật khẩu 🥺';return}
+  const rows=await r.json();
+  if(!rows.length){box.textContent='Chưa có câu trả lời nào.';return}
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  box.innerHTML=rows.map(x=>`<div class="a">
+    <small>${new Date(x.time).toLocaleString('vi-VN')}</small><br>
+    📅 <b>Ngày:</b> ${x.dates.map(esc).join(', ')}<br>
+    ⏰ <b>Giờ đón:</b> ${esc(x.hour)}<br>
+    🍽️ <b>Món ăn:</b> ${esc(x.food)}<br>
+    🎁 <b>Đang thích:</b> ${esc(x.gift)}<br>
+    💬 <b>Góp ý:</b> ${esc(x.feedback)||'(không có)'}
+  </div>`).join('');
+})();
+</script>
+</body>
+</html>
